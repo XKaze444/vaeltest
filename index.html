@@ -1,11 +1,1963 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Vael Ganteng</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Microbiology | Explore the Invisible World</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
+<style>
+    /* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    color: #17324d;
+    background: #ffffff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+}
+
+.section {
+    padding: 110px 0;
+}
+
+.section-container {
+    width: min(1120px, 90%);
+    margin: auto;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    transition: 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 12px 0;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 5px 25px rgba(32, 111, 170, 0.08);
+}
+
+.nav-container {
+    width: min(1120px, 90%);
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #1264a3;
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+}
+
+.logo-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    color: white;
+    background: linear-gradient(135deg, #5fc7f5, #1984ce);
+    box-shadow: 0 7px 18px rgba(25, 132, 206, 0.22);
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px;
+    border-radius: 14px;
+    background: rgba(245, 251, 255, 0.85);
+}
+
+.nav-link {
+    position: relative;
+    padding: 9px 14px;
+    color: #61778a;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 9px;
+    transition: 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #0877bf;
+    background: #e8f6ff;
+}
+
+.menu-toggle {
+    display: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    margin: 5px;
+    background: #1675b4;
+    transition: 0.3s;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    min-height: 100vh;
+    padding-top: 160px;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 80% 35%, rgba(113, 205, 250, 0.18), transparent 32%),
+        linear-gradient(180deg, #f7fcff 0%, #ffffff 100%);
+}
+
+.hero-container {
+    width: min(1120px, 90%);
+    min-height: 620px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-badge,
+.section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #1685ca;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.hero-badge {
+    padding: 8px 13px;
+    border-radius: 30px;
+    background: #eaf8ff;
+    border: 1px solid #d5effd;
+}
+
+.hero-badge span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #36a9e1;
+    animation: pulse 2s infinite;
+}
+
+.hero h1 {
+    max-width: 650px;
+    margin: 22px 0;
+    color: #143650;
+    font-size: clamp(48px, 6vw, 76px);
+    line-height: 1.05;
+    letter-spacing: -3px;
+}
+
+.hero h1 span {
+    display: block;
+    color: #35a9e5;
+}
+
+.hero-content > p {
+    max-width: 570px;
+    color: #687f91;
+    font-size: 17px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 13px 21px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.btn-primary {
+    color: white;
+    background: linear-gradient(135deg, #55c3f2, #1985cd);
+    box-shadow: 0 10px 25px rgba(24, 137, 205, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(24, 137, 205, 0.28);
+}
+
+.btn-secondary {
+    color: #2779a9;
+    background: white;
+    border: 1px solid #d9ebf5;
+}
+
+.btn-secondary:hover {
+    background: #f0f9fd;
+    transform: translateY(-3px);
+}
+
+
+/* =====================================================
+   MICROSCOPE ILLUSTRATION
+===================================================== */
+
+.hero-visual {
+    min-height: 500px;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.visual-glow {
+    position: absolute;
+    width: 390px;
+    height: 390px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(100, 204, 246, 0.25), rgba(100, 204, 246, 0));
+}
+
+.microscope {
+    width: 280px;
+    height: 360px;
+    position: relative;
+    animation: floating 5s ease-in-out infinite;
+}
+
+.microscope-head {
+    position: absolute;
+    width: 80px;
+    height: 135px;
+    top: 35px;
+    left: 102px;
+    border-radius: 45px 45px 20px 20px;
+    transform: rotate(-25deg);
+    background: linear-gradient(135deg, #9fe2fa, #3b9fd0);
+}
+
+.microscope-body {
+    position: absolute;
+    width: 120px;
+    height: 185px;
+    top: 120px;
+    left: 93px;
+    border-radius: 55px 20px 25px 20px;
+    transform: rotate(18deg);
+    background: linear-gradient(135deg, #d9f4ff, #74bde1);
+    box-shadow: inset -12px -10px 20px rgba(43, 132, 177, 0.15);
+}
+
+.lens {
+    position: absolute;
+    width: 35px;
+    height: 65px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #216b9c, #70c7ed);
+    transform: rotate(-25deg);
+    z-index: 3;
+}
+
+.lens-one {
+    top: 5px;
+    left: 95px;
+}
+
+.lens-two {
+    top: 12px;
+    left: 120px;
+}
+
+.lens-three {
+    top: 26px;
+    left: 142px;
+}
+
+.microscope-stage {
+    position: absolute;
+    top: 210px;
+    left: 45px;
+    width: 200px;
+    height: 25px;
+    border-radius: 20px;
+    background: #4d9fca;
+    box-shadow: 0 8px 20px rgba(37, 121, 161, 0.2);
+    z-index: 5;
+}
+
+.slide {
+    position: absolute;
+    width: 75px;
+    height: 13px;
+    top: 6px;
+    left: 60px;
+    border-radius: 10px;
+    background: #e9fbff;
+}
+
+.microscope-base {
+    position: absolute;
+    width: 220px;
+    height: 38px;
+    left: 30px;
+    bottom: 40px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #a4def5, #398fbd);
+    box-shadow: 0 15px 30px rgba(32, 123, 166, 0.18);
+}
+
+
+/* Floating microbes */
+
+.microbe {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(48, 159, 211, 0.5);
+    background: rgba(148, 224, 249, 0.18);
+}
+
+.microbe span,
+.microbe i {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    background: #62c5ed;
+}
+
+.microbe-one {
+    width: 65px;
+    height: 65px;
+    top: 60px;
+    right: 10px;
+    animation: floating 4s ease-in-out infinite;
+}
+
+.microbe-one span {
+    width: 9px;
+    height: 9px;
+    top: 18px;
+    left: 20px;
+}
+
+.microbe-one i {
+    width: 6px;
+    height: 6px;
+    right: 15px;
+    bottom: 18px;
+}
+
+.microbe-two {
+    width: 45px;
+    height: 45px;
+    bottom: 90px;
+    right: 50px;
+    animation: floating 4.5s ease-in-out infinite reverse;
+}
+
+.microbe-two span {
+    width: 7px;
+    height: 7px;
+    top: 12px;
+    left: 12px;
+}
+
+.microbe-two i:first-of-type {
+    width: 5px;
+    height: 5px;
+    bottom: 10px;
+    right: 10px;
+}
+
+.microbe-two i:last-of-type {
+    width: 4px;
+    height: 4px;
+    top: 19px;
+    right: 10px;
+}
+
+.microbe-three {
+    width: 30px;
+    height: 30px;
+    top: 190px;
+    left: 35px;
+    animation: floating 3.5s ease-in-out infinite;
+}
+
+.microbe-three span {
+    width: 6px;
+    height: 6px;
+    top: 10px;
+    left: 10px;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #9aaeba;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.scroll-indicator span {
+    display: block;
+    width: 1px;
+    height: 35px;
+    margin: 0 auto 7px;
+    background: #8ccce8;
+}
+
+
+/* =====================================================
+   SECTION HEADINGS
+===================================================== */
+
+.section-heading {
+    margin-bottom: 55px;
+}
+
+.section-heading h2 {
+    margin-top: 12px;
+    color: #173b57;
+    font-size: clamp(34px, 4vw, 48px);
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+}
+
+.section-heading h2 span {
+    color: #3ba9df;
+}
+
+.section-heading > p {
+    max-width: 570px;
+    margin-top: 15px;
+    color: #758a9a;
+}
+
+.centered {
+    text-align: center;
+}
+
+.centered > p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* =====================================================
+   INTRODUCTION
+===================================================== */
+
+.introduction {
+    background: #ffffff;
+}
+
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.intro-content > p {
+    color: #718594;
+    margin-bottom: 18px;
+}
+
+.intro-content .intro-main {
+    color: #34546c;
+    font-size: 21px;
+    line-height: 1.65;
+}
+
+.text-button {
+    display: inline-flex;
+    gap: 10px;
+    margin-top: 18px;
+    color: #1484c6;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.25s;
+}
+
+.text-button:hover {
+    gap: 15px;
+}
+
+.intro-card {
+    min-height: 350px;
+    position: relative;
+    overflow: hidden;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 25px;
+    background: linear-gradient(145deg, #eefaff, #d9f4ff);
+    box-shadow: 0 20px 50px rgba(32, 140, 190, 0.08);
+}
+
+.microscope-icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 25px;
+    display: grid;
+    place-items: center;
+    border-radius: 20px;
+    font-size: 32px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(42, 142, 188, 0.1);
+}
+
+.intro-card h3 {
+    color: #1b577b;
+    font-size: 25px;
+}
+
+.intro-card p {
+    max-width: 380px;
+    margin-top: 10px;
+    color: #65869a;
+}
+
+.card-line {
+    width: 45px;
+    height: 3px;
+    margin-top: 25px;
+    border-radius: 5px;
+    background: #55b9e7;
+}
+
+.card-caption {
+    margin-top: 12px;
+    color: #74a5bd;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.card-decoration {
+    position: absolute;
+    border: 1px solid rgba(70, 172, 218, 0.2);
+    border-radius: 50%;
+}
+
+.decoration-one {
+    width: 230px;
+    height: 230px;
+    right: -100px;
+    top: -90px;
+}
+
+.decoration-two {
+    width: 160px;
+    height: 160px;
+    right: -60px;
+    bottom: -70px;
+}
+
+
+/* =====================================================
+   FACTS
+===================================================== */
+
+.facts-section {
+    background: #f7fcff;
+}
+
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.fact-card {
+    position: relative;
+    min-height: 330px;
+    padding: 27px;
+    overflow: hidden;
+    border: 1px solid #e4f2f9;
+    border-radius: 20px;
+    background: white;
+    cursor: pointer;
+    transition: 0.35s ease;
+}
+
+.fact-card:hover,
+.fact-card.selected {
+    transform: translateY(-9px);
+    box-shadow: 0 20px 40px rgba(44, 133, 173, 0.12);
+}
+
+.fact-icon {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 30px;
+    position: relative;
+    border-radius: 16px;
+    background: #e9f8ff;
+}
+
+.fact-number {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    color: #c2dbe8;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.fact-card h3 {
+    color: #24516d;
+    font-size: 21px;
+}
+
+.fact-card p {
+    margin-top: 10px;
+    color: #8195a3;
+    font-size: 13px;
+}
+
+.fact-link {
+    position: absolute;
+    bottom: 25px;
+    color: #2394ce;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.fact-link span {
+    margin-left: 7px;
+    transition: 0.25s;
+}
+
+.fact-card:hover .fact-link span {
+    margin-left: 12px;
+}
+
+
+/* Bacteria icon */
+
+.bacteria-icon span {
+    position: absolute;
+    width: 12px;
+    height: 30px;
+    border-radius: 20px;
+    background: #62c6ec;
+}
+
+.bacteria-icon span:nth-child(1) {
+    top: 12px;
+    left: 10px;
+    transform: rotate(35deg);
+}
+
+.bacteria-icon span:nth-child(2) {
+    top: 8px;
+    left: 25px;
+    transform: rotate(-30deg);
+}
+
+.bacteria-icon span:nth-child(3) {
+    top: 23px;
+    left: 31px;
+    transform: rotate(40deg);
+}
+
+
+/* Virus icon */
+
+.virus-icon {
+    border-radius: 50%;
+}
+
+.virus-icon span {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #9c91e9;
+}
+
+.virus-icon span:nth-child(1) {
+    top: -3px;
+    left: 22px;
+}
+
+.virus-icon span:nth-child(2) {
+    bottom: -3px;
+    left: 22px;
+}
+
+.virus-icon span:nth-child(3) {
+    left: -3px;
+    top: 22px;
+}
+
+.virus-icon span:nth-child(4) {
+    right: -3px;
+    top: 22px;
+}
+
+
+/* Fungi icon */
+
+.fungi-icon {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 3px;
+    padding: 10px;
+}
+
+.fungi-icon span {
+    width: 12px;
+    border-radius: 12px 12px 5px 5px;
+    background: #72cda4;
+}
+
+.fungi-icon span:nth-child(1) {
+    height: 20px;
+}
+
+.fungi-icon span:nth-child(2) {
+    height: 31px;
+}
+
+.fungi-icon span:nth-child(3) {
+    height: 24px;
+}
+
+
+/* Protozoa */
+
+.protozoa-icon span {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid #f0b46c;
+}
+
+.protozoa-icon span:first-child {
+    width: 27px;
+    height: 32px;
+    top: 10px;
+    left: 12px;
+}
+
+.protozoa-icon span:last-child {
+    width: 9px;
+    height: 9px;
+    top: 22px;
+    left: 21px;
+    background: #f0b46c;
+}
+
+
+/* =====================================================
+   APPLICATIONS
+===================================================== */
+
+.applications {
+    background: white;
+}
+
+.applications-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.application-card {
+    position: relative;
+    display: flex;
+    gap: 18px;
+    padding: 30px;
+    border: 1px solid #e4f0f6;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.application-card:hover {
+    transform: translateY(-5px);
+    border-color: #b9e5f8;
+    box-shadow: 0 15px 35px rgba(36, 133, 175, 0.08);
+}
+
+.application-icon {
+    min-width: 47px;
+    height: 47px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    color: #1989c8;
+    background: #e8f7ff;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.application-card h3 {
+    color: #244e68;
+    margin-bottom: 7px;
+}
+
+.application-card p {
+    color: #8295a2;
+    font-size: 12px;
+}
+
+.application-arrow {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: #b2cedc;
+}
+
+
+/* =====================================================
+   LABORATORY
+===================================================== */
+
+.laboratory {
+    padding-top: 40px;
+}
+
+.lab-banner {
+    min-height: 390px;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 0.7fr;
+    align-items: center;
+    padding: 65px;
+    border-radius: 28px;
+    background: linear-gradient(120deg, #eaf9ff, #d7f2ff);
+}
+
+.lab-content {
+    position: relative;
+    z-index: 2;
+}
+
+.lab-content h2 {
+    max-width: 520px;
+    margin: 12px 0;
+    color: #194766;
+    font-size: 42px;
+    line-height: 1.15;
+}
+
+.lab-content h2 span {
+    color: #31a3dc;
+}
+
+.lab-content p {
+    max-width: 500px;
+    margin-bottom: 25px;
+    color: #6d899a;
+    font-size: 14px;
+}
+
+.lab-visual {
+    height: 300px;
+    position: relative;
+}
+
+.petri-dish {
+    position: absolute;
+    width: 230px;
+    height: 100px;
+    top: 80px;
+    right: 30px;
+    border-radius: 50%;
+    border: 8px solid rgba(89, 178, 215, 0.35);
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 20px 40px rgba(44, 132, 171, 0.1);
+    transform: rotate(-10deg);
+}
+
+.dish-content {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    left: 45px;
+    top: 25px;
+    border-radius: 50%;
+    background: rgba(79, 182, 224, 0.4);
+}
+
+.dish-content.small {
+    width: 20px;
+    height: 20px;
+    left: 105px;
+    top: 40px;
+}
+
+.dish-content.tiny {
+    width: 14px;
+    height: 14px;
+    left: 150px;
+    top: 25px;
+}
+
+.lab-bubble {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(50, 164, 215, 0.3);
+}
+
+.bubble-one {
+    width: 55px;
+    height: 55px;
+    right: 0;
+    top: 20px;
+}
+
+.bubble-two {
+    width: 25px;
+    height: 25px;
+    right: 250px;
+    top: 30px;
+}
+
+.bubble-three {
+    width: 80px;
+    height: 80px;
+    right: 180px;
+    bottom: 0;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+    padding: 50px 0 20px;
+    background: #f3faff;
+}
+
+.footer-container {
+    width: min(1120px, 90%);
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.footer-brand p {
+    max-width: 300px;
+    margin-top: 12px;
+    color: #8298a7;
+    font-size: 12px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.footer-links a {
+    color: #718b9b;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.footer-links a:hover {
+    color: #1888c8;
+}
+
+.footer-bottom {
+    width: min(1120px, 90%);
+    margin: 35px auto 0;
+    padding-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #dceef7;
+    color: #9aaeba;
+    font-size: 10px;
+}
+
+
+/* =====================================================
+   BACK TO TOP
+===================================================== */
+
+.back-to-top {
+    position: fixed;
+    width: 42px;
+    height: 42px;
+    right: 25px;
+    bottom: 25px;
+    z-index: 500;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    background: #2697d0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: 0.3s;
+    box-shadow: 0 10px 25px rgba(32, 133, 180, 0.2);
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    transform: translateY(-4px);
+}
+
+
+/* =====================================================
+   REVEAL ANIMATION
+===================================================== */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =====================================================
+   ANIMATIONS
+===================================================== */
+
+@keyframes floating {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(1.4);
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .nav-menu {
+        position: absolute;
+        top: 75px;
+        left: 5%;
+        width: 90%;
+        padding: 15px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        background: white;
+        box-shadow: 0 15px 40px rgba(40, 120, 160, 0.12);
+    }
+
+    .nav-menu.open {
+        display: flex;
+    }
+
+    .nav-link {
+        text-align: center;
+        padding: 12px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-content > p {
+        margin: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-visual {
+        min-height: 380px;
+    }
+
+    .facts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .applications-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .intro-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .lab-banner {
+        grid-template-columns: 1fr;
+        padding: 45px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .section {
+        padding: 80px 0;
+    }
+
+    .hero {
+        padding-top: 120px;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+        letter-spacing: -2px;
+    }
+
+    .hero-content > p {
+        font-size: 14px;
+    }
+
+    .hero-visual {
+        transform: scale(0.8);
+        margin-top: -30px;
+    }
+
+    .facts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .intro-card {
+        padding: 35px;
+    }
+
+    .lab-banner {
+        padding: 35px 25px;
+    }
+
+    .lab-content h2 {
+        font-size: 32px;
+    }
+
+    .lab-visual {
+        transform: scale(0.75);
+        margin-top: -30px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+</style>
+
 <body>
-  <h1>Testing hh hayyuk</h1>
-  <a href="function.html">Test ke page ke 2</a>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+
+            <a href="#home" class="logo">
+                <span class="logo-icon">◉</span>
+                MICROBIOLOGY
+            </a>
+
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#introduction" class="nav-link">Introduction</a>
+                <a href="#microorganisms" class="nav-link">Microorganisms</a>
+                <a href="#applications" class="nav-link">Applications</a>
+                <a href="#laboratory" class="nav-link">Laboratory</a>
+            </nav>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- ================= HERO ================= -->
+        <section class="hero section" id="home">
+
+            <div class="hero-container">
+
+                <div class="hero-content reveal">
+
+                    <div class="hero-badge">
+                        <span></span>
+                        WELCOME TO THE MICROSCOPIC WORLD
+                    </div>
+
+                    <h1>
+                        Explore the
+                        <span>Invisible World</span>
+                    </h1>
+
+                    <p>
+                        Discover the fascinating world of microorganisms
+                        and their impact on life, health, and the environment.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#introduction" class="btn btn-primary">
+                            Explore Microbiology
+                            <span>→</span>
+                        </a>
+
+                        <a href="#applications" class="btn btn-secondary">
+                            Learn More
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <!-- Microscope illustration -->
+                <div class="hero-visual reveal">
+
+                    <div class="visual-glow"></div>
+
+                    <div class="microscope">
+
+                        <div class="microscope-head"></div>
+
+                        <div class="lens lens-one"></div>
+                        <div class="lens lens-two"></div>
+                        <div class="lens lens-three"></div>
+
+                        <div class="microscope-body"></div>
+
+                        <div class="microscope-stage">
+                            <div class="slide"></div>
+                        </div>
+
+                        <div class="microscope-base"></div>
+
+                    </div>
+
+
+                    <!-- Floating microorganisms -->
+
+                    <div class="microbe microbe-one">
+                        <span></span>
+                        <i></i>
+                    </div>
+
+                    <div class="microbe microbe-two">
+                        <span></span>
+                        <i></i>
+                        <i></i>
+                    </div>
+
+                    <div class="microbe microbe-three">
+                        <span></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="scroll-indicator">
+                <span></span>
+                Scroll to explore
+            </div>
+
+        </section>
+
+
+        <!-- ================= INTRODUCTION ================= -->
+        <section class="section introduction" id="introduction">
+
+            <div class="section-container">
+
+                <div class="section-heading reveal">
+                    <span class="section-label">INTRODUCTION</span>
+                    <h2>What is <span>Microbiology?</span></h2>
+                </div>
+
+
+                <div class="intro-grid">
+
+                    <div class="intro-content reveal">
+
+                        <p class="intro-main">
+                            Microbiology is the branch of biology that studies
+                            microorganisms, including bacteria, viruses, fungi,
+                            protozoa, and microscopic algae.
+                        </p>
+
+                        <p>
+                            Although they are too small to be seen with the naked eye,
+                            microorganisms are everywhere. They play important roles
+                            in ecosystems, human health, food production, and
+                            biotechnology.
+                        </p>
+
+                        <a href="#microorganisms" class="text-button">
+                            Discover More <span>→</span>
+                        </a>
+
+                    </div>
+
+
+                    <div class="intro-card reveal">
+
+                        <div class="card-decoration decoration-one"></div>
+                        <div class="card-decoration decoration-two"></div>
+
+                        <div class="microscope-icon">
+                            🔬
+                        </div>
+
+                        <h3>Life Beyond Sight</h3>
+
+                        <p>
+                            A microscopic world exists all around us,
+                            filled with organisms that influence our daily lives.
+                        </p>
+
+                        <div class="card-line"></div>
+
+                        <span class="card-caption">
+                            SEE • DISCOVER • UNDERSTAND
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= QUICK FACTS ================= -->
+        <section class="section facts-section" id="microorganisms">
+
+            <div class="section-container">
+
+                <div class="section-heading centered reveal">
+                    <span class="section-label">QUICK FACTS</span>
+
+                    <h2>
+                        Microbiology
+                        <span>at a Glance</span>
+                    </h2>
+
+                    <p>
+                        Explore some of the major groups of microorganisms.
+                    </p>
+                </div>
+
+
+                <div class="facts-grid">
+
+                    <!-- Bacteria -->
+                    <article class="fact-card reveal" data-color="blue">
+
+                        <div class="fact-icon bacteria-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <div class="fact-number">01</div>
+
+                        <h3>Bacteria</h3>
+
+                        <p>
+                            Single-celled organisms found in almost every
+                            environment on Earth.
+                        </p>
+
+                        <div class="fact-link">
+                            Explore <span>→</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- Viruses -->
+                    <article class="fact-card reveal" data-color="purple">
+
+                        <div class="fact-icon virus-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <div class="fact-number">02</div>
+
+                        <h3>Viruses</h3>
+
+                        <p>
+                            Microscopic infectious agents that require
+                            host cells to reproduce.
+                        </p>
+
+                        <div class="fact-link">
+                            Explore <span>→</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- Fungi -->
+                    <article class="fact-card reveal" data-color="green">
+
+                        <div class="fact-icon fungi-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <div class="fact-number">03</div>
+
+                        <h3>Fungi</h3>
+
+                        <p>
+                            A diverse group that includes microscopic
+                            organisms such as yeasts and molds.
+                        </p>
+
+                        <div class="fact-link">
+                            Explore <span>→</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- Protozoa -->
+                    <article class="fact-card reveal" data-color="orange">
+
+                        <div class="fact-icon protozoa-icon">
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <div class="fact-number">04</div>
+
+                        <h3>Protozoa</h3>
+
+                        <p>
+                            Mostly single-celled organisms commonly found
+                            in water and moist environments.
+                        </p>
+
+                        <div class="fact-link">
+                            Explore <span>→</span>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= APPLICATIONS ================= -->
+        <section class="section applications" id="applications">
+
+            <div class="section-container">
+
+                <div class="section-heading reveal">
+
+                    <span class="section-label">WHY IT MATTERS</span>
+
+                    <h2>
+                        Microbiology in
+                        <span>Our Lives</span>
+                    </h2>
+
+                    <p>
+                        Microorganisms may be invisible, but their impact
+                        can be seen everywhere.
+                    </p>
+
+                </div>
+
+
+                <div class="applications-grid">
+
+                    <article class="application-card reveal">
+
+                        <div class="application-icon">
+                            +
+                        </div>
+
+                        <div>
+                            <h3>Medicine</h3>
+
+                            <p>
+                                Microbiology helps us understand infectious
+                                diseases, develop medicines, vaccines,
+                                and improve healthcare.
+                            </p>
+                        </div>
+
+                        <span class="application-arrow">↗</span>
+
+                    </article>
+
+
+                    <article class="application-card reveal">
+
+                        <div class="application-icon">
+                            ✦
+                        </div>
+
+                        <div>
+                            <h3>Food</h3>
+
+                            <p>
+                                Microorganisms are involved in fermentation
+                                and the production of foods such as yogurt,
+                                cheese, and bread.
+                            </p>
+                        </div>
+
+                        <span class="application-arrow">↗</span>
+
+                    </article>
+
+
+                    <article class="application-card reveal">
+
+                        <div class="application-icon">
+                            ◌
+                        </div>
+
+                        <div>
+                            <h3>Environment</h3>
+
+                            <p>
+                                Microorganisms help decompose organic matter
+                                and contribute to nutrient cycles within ecosystems.
+                            </p>
+                        </div>
+
+                        <span class="application-arrow">↗</span>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= LABORATORY PREVIEW ================= -->
+        <section class="section laboratory" id="laboratory">
+
+            <div class="section-container">
+
+                <div class="lab-banner reveal">
+
+                    <div class="lab-content">
+
+                        <span class="section-label">LABORATORY</span>
+
+                        <h2>
+                            Discover the
+                            <span>Microbiology Lab</span>
+                        </h2>
+
+                        <p>
+                            From microscopes to petri dishes, explore the tools
+                            and techniques scientists use to study microorganisms.
+                        </p>
+
+                        <a href="#" class="btn btn-primary">
+                            Explore Laboratory
+                            <span>→</span>
+                        </a>
+
+                    </div>
+
+
+                    <div class="lab-visual">
+
+                        <div class="petri-dish">
+                            <div class="dish-content"></div>
+                            <div class="dish-content small"></div>
+                            <div class="dish-content tiny"></div>
+                        </div>
+
+                        <div class="lab-bubble bubble-one"></div>
+                        <div class="lab-bubble bubble-two"></div>
+                        <div class="lab-bubble bubble-three"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <a href="#home" class="logo">
+                    <span class="logo-icon">◉</span>
+                    MICROBIOLOGY
+                </a>
+
+                <p>
+                    Exploring life beyond what the human eye can see.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="#home">Home</a>
+                <a href="#introduction">Introduction</a>
+                <a href="#microorganisms">Microorganisms</a>
+                <a href="#applications">Applications</a>
+                <a href="#laboratory">Laboratory</a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+            <p>© 2026 Microbiology Project</p>
+            <p>Educational Website</p>
+        </div>
+
+    </footer>
+
+
+    <!-- BACK TO TOP -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        ↑
+    </button>
+
+
+    <script>
+        /* =====================================================
+   ELEMENTS
+===================================================== */
+
+const navbar = document.getElementById("navbar");
+const navMenu = document.getElementById("navMenu");
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.querySelectorAll(".nav-link");
+const backToTop = document.getElementById("backToTop");
+
+const sections = document.querySelectorAll("section[id]");
+const revealElements = document.querySelectorAll(".reveal");
+const factCards = document.querySelectorAll(".fact-card");
+
+
+/* =====================================================
+   NAVBAR SCROLL EFFECT
+===================================================== */
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+
+});
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+menuToggle.addEventListener("click", () => {
+
+    navMenu.classList.toggle("open");
+
+});
+
+
+/* Close mobile menu after clicking navigation */
+
+navLinks.forEach(link => {
+
+    link.addEventListener("click", () => {
+        navMenu.classList.remove("open");
+    });
+
+});
+
+
+/* =====================================================
+   ACTIVE NAVIGATION
+===================================================== */
+
+const observerOptions = {
+    root: null,
+    rootMargin: "-35% 0px -55% 0px",
+    threshold: 0
+};
+
+const sectionObserver = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            const currentSection = entry.target.getAttribute("id");
+
+            navLinks.forEach(link => {
+
+                link.classList.remove("active");
+
+                if (link.getAttribute("href") === `#${currentSection}`) {
+                    link.classList.add("active");
+                }
+
+            });
+
+        }
+
+    });
+
+}, observerOptions);
+
+
+sections.forEach(section => {
+    sectionObserver.observe(section);
+});
+
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.classList.add("visible");
+
+            observer.unobserve(entry.target);
+
+        }
+
+    });
+
+}, {
+    threshold: 0.12
+});
+
+
+revealElements.forEach(element => {
+    revealObserver.observe(element);
+});
+
+
+/* =====================================================
+   QUICK FACTS INTERACTION
+===================================================== */
+
+factCards.forEach(card => {
+
+    card.addEventListener("click", () => {
+
+        factCards.forEach(otherCard => {
+
+            if (otherCard !== card) {
+                otherCard.classList.remove("selected");
+            }
+
+        });
+
+        card.classList.toggle("selected");
+
+    });
+
+});
+
+
+/* =====================================================
+   BACK TO TOP
+===================================================== */
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 500) {
+        backToTop.classList.add("show");
+    } else {
+        backToTop.classList.remove("show");
+    }
+
+});
+
+
+backToTop.addEventListener("click", () => {
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+
+/* =====================================================
+   BUTTON INTERACTION
+===================================================== */
+
+const primaryButtons = document.querySelectorAll(".btn-primary");
+
+primaryButtons.forEach(button => {
+
+    button.addEventListener("mouseenter", () => {
+        button.style.transition = "0.3s ease";
+    });
+
+});
+
+
+/* =====================================================
+   PREVENT EMPTY LAB BUTTON
+===================================================== */
+
+const labButton = document.querySelector(".lab-content .btn");
+
+labButton.addEventListener("click", (event) => {
+
+    if (labButton.getAttribute("href") === "#") {
+        event.preventDefault();
+
+        alert(
+            "The Laboratory section will be available in the next part of the website."
+        );
+    }
+
+});
+
+    </script>
+
 </body>
 </html>
